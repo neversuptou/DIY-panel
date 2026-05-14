@@ -1,0 +1,7 @@
+../Src/main.c:38:6:uart_send_char	2
+../Src/main.c:44:6:uart_send_str	2
+../Src/main.c:49:6:uart_send_num	2
+../Src/main.c:55:6:set_button	3
+../Src/main.c:66:6:delay	2
+../Src/main.c:71:6:check_buttons	3
+../Src/main.c:90:5:main	1
