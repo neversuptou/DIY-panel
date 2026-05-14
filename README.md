@@ -34,20 +34,16 @@
 
 ```
 DIY-panel/
-├── firmware/           # Исходный код STM32CubeIDE (bare-metal C)
-│   ├── Core/
-│   │   ├── Src/        # main.c, gpio.c и др.
-│   │   └── Inc/        # заголовочные файлы
-│   ├── Drivers/        # HAL/CMSIS драйверы
-│   └── ...             # файлы проекта CubeIDE
-├── simulation/         # Proteus-проект (схема + симуляция)
-│   └── button_box.pdsprj
-├── build/              # Скомпилированный HEX
-│   └── buttons.hex
+├── buttons/            # Исходный код STM32CubeIDE (bare-metal C)
+│   ├── Src/            # main.c, syscalls.c, sysmem.c
+│   ├── Startup/        # стартап-файлы
+│   ├── Debug/          # артефакты сборки (в .gitignore)
+│   └── STM32F401CCUX_FLASH.ld
+├── button_box.pdsprj   # Proteus-проект (схема + симуляция)
+├── buttons.hex         # Скомпилированный HEX (последняя стабильная версия)
+├── .gitignore
 └── README.md
 ```
-
-> ⚠️ Рекомендуется переместить `button_box.pdsprj` в папку `simulation/`, а `buttons.hex` — в `build/`
 
 ---
 
@@ -60,15 +56,15 @@ DIY-panel/
 
 ### Сборка
 
-1. Открыть папку `firmware/` как проект в STM32CubeIDE
+1. Открыть папку `buttons/` как проект в STM32CubeIDE
 2. Build → `Project > Build All` (Ctrl+B)
-3. Прошить через ST-Link: `Run > Run` или загрузить `build/buttons.hex` через STM32CubeProgrammer
+3. Прошить через ST-Link: `Run > Run` или загрузить `buttons.hex` через STM32CubeProgrammer
 
 ---
 
 ## 🧪 Симуляция (Proteus)
 
-Файл `simulation/button_box.pdsprj` содержит схему матрицы кнопок с Blue Pill.  
+Файл `button_box.pdsprj` содержит схему матрицы кнопок с Blue Pill.  
 Позволяет отлаживать прошивку без физического железа.
 
 **Запуск:**
@@ -93,4 +89,5 @@ DIY-panel/
 ## 📌 Заметки
 
 - Workspace-файл Proteus (`.workspace`) добавлен в `.gitignore` — он хранит локальные пути
-- Hex-файл в репе актуален для последней стабильной версии прошивки
+- Папка `Debug/` добавлена в `.gitignore` — туда идут артефакты сборки STM32CubeIDE
+- `buttons.hex` в репе — актуален для последней стабильной версии прошивки
